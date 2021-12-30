@@ -125,10 +125,35 @@ const confirmar = async( mensaje ) => {
     return ok;
 }
 
+const listadoTareasModificar = async( tareas = [] ) => {
+    const choices = tareas.map(( tarea, i ) => {
+        const index = `${ i + 1 }.-`.green;
+
+        return {
+            value: tarea.id,
+            name: `${ index } ${ tarea.descripcion }`,
+            checked: ( tarea.fechaCompletado ) ? true : false
+        }
+    });
+
+    const pregunta = [
+        {
+            type: 'checkbox',
+            name: 'ids',
+            message: 'Seleccione',
+            choices
+        }
+    ];
+
+    const { ids } = await inquirer.prompt(pregunta);
+    return ids;
+}
+
 module.exports = { 
     inquirerMenu,
     pausa,
     leerInput,
     listadoTareasBorrar,
-    confirmar
+    confirmar,
+    listadoTareasModificar
 };
