@@ -23,6 +23,7 @@ const main = async() => {
                 tareas.crearTarea( descripcion );
                 break;
             case '2':
+                tareas.listadoCompleto();
                 break;
         }
 
